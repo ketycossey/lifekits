@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> header}}
+    <title>Life Kits</title>
+  </head>
+  <body>
+    <h1>Edit Product</h1>
+
+<div class="container">
+{{>menu}}
+
+
+<form action="/users/upload/edit/{{id}}" method="POST" enctype="multipart/form-data">
+<label>Photo</label>
+<input type="file" name="photo" />
+<button type="submit">Upload</button>
+</form>
+
+<img src="/uploads/{{imageURL}}" class="{{className}}"/>
+
+
+<form action='/users/update-product' method="POST">
+<input type="hidden" name="productId" value={{id}} />
+<div class="form-group">
+    <label for="fortitle">Title</label>
+    <input type="text" name="title" value={{title}} class="form-control" placeholder="Enter title">
+    </div>
+ <div class="form-group">
+    <label for="fordescription">Description</label>
+    <textarea name="description" value={{description}} class="form-control" ></textarea>
+    </div>
+ <div class="form-group">
+    <label>Price</label>
+    <input type='text' name='price' value={{price}}/>
+
+</div>
+<button type="submit" class="btn btn-dark">Save</button>
+</form>
+
+</div>
+
+{{#message}}
+<div class="alert-danger" role="alert">
+{{message}}
+</div>
+{{/message}}
+
+{{>footer}}
+  </body>
+</html>
