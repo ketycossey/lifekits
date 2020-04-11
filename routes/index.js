@@ -5,6 +5,35 @@ const models = require("../models");
 
 const SALT_ROUNDS = 10;
 
+router.post("/add-comment", async (req, res) => {
+  let productId = parseInt(req.body.productId);
+  let title = req.body.title;
+  let description = req.body.description;
+
+  let comment = models.Comment.build({
+    title: title,
+    description: description,
+    productId: productId,
+  });
+  let savedComment = await comment.save();
+  if (savedComment) {
+    res.redirect(`/products/${productId}`);
+  } else {
+    res.render("product-details", { message: "Error adding comment!" });
+  }
+});
+
+router.get("/products/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  const product = await models.Product.findByPk(productId);
+  res.render("product-details", product.dataValues);
+});
+
+router.get("/", async (req, res) => {
+  let products = await models.Product.findAll();
+  res.render("index", { products: products });
+});
+
 router.get("/login", (req, res) => {
   res.render("login");
 });
