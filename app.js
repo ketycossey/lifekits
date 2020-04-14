@@ -8,6 +8,7 @@ const models = require("./models");
 const session = require("express-session");
 const indexRoutes = require("./routes/index");
 const userRoutes = require("./routes/users");
+const checkAuthorization = require("./middlewares/authorization");
 
 const SALT_ROUNDS = 10;
 const PORT = 3000;
@@ -27,12 +28,16 @@ app.use("/css", express.static("css"));
 
 app.use(bodyParser.urlencoded({ entended: false }));
 //app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = false;
+  next();
+});
 
 app.engine("mustache", mustacheExpress(VIEW_PATH + "/partials", ".mustache"));
 app.set("views", VIEW_PATH);
 app.set("view engine", "mustache");
 
 app.use("/", indexRoutes);
-app.use("/users", userRoutes);
+app.use("/users", checkAuthorization, userRoutes);
 
 app.listen(PORT, () => console.log("Server is running..."));

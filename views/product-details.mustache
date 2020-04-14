@@ -29,6 +29,19 @@
 </div>
 <button type='submit' class='btn btn-primary'>Submit</button>
 </form>
+</div>
+<h5>Comments</h5>
+<ul class="list-group">
+{{#comments}}
+<div class='d-flex w-100 justify-content-between'>
+<h5 class="mb-1">{{title}}</h5>
+</div>
+<p class="mb-1">
+{{description}}
+</p>
+{{/comments}}
+</ul>
+
 {{#message}}
 <div class="alert-danger" role="alert">
 {{message}}

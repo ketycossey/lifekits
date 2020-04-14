@@ -5,6 +5,17 @@ const models = require("../models");
 
 const SALT_ROUNDS = 10;
 
+router.get("/logout", (req, res, next) => {
+  if (req.session) {
+    req.session.destroy((error) => {
+      if (error) {
+        next(error);
+      } else {
+        res.redirect("/");
+      }
+    });
+  }
+});
 router.post("/add-comment", async (req, res) => {
   let productId = parseInt(req.body.productId);
   let title = req.body.title;
@@ -25,7 +36,18 @@ router.post("/add-comment", async (req, res) => {
 
 router.get("/products/:productId", async (req, res) => {
   const productId = req.params.productId;
-  const product = await models.Product.findByPk(productId);
+  const product = await models.Product.findOne({
+    include: [
+      {
+        model: models.Comment,
+        as: "comments",
+      },
+    ],
+    where: {
+      id: productId,
+    },
+  });
+  console.log(product.dataValues);
   res.render("product-details", product.dataValues);
 });
 

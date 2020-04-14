@@ -1,3 +1,7 @@
+body {
+  background-color: palevioletred;
+}
+
 .product-preview-image {
   width: 300px;
   height: 300;
