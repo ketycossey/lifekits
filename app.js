@@ -28,6 +28,7 @@ app.use("/css", express.static("css"));
 
 app.use(bodyParser.urlencoded({ entended: false }));
 //app.use(bodyParser.json());
+
 app.use((req, res, next) => {
   res.locals.isAuthenticated = false;
   next();

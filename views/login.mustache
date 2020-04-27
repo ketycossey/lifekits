@@ -1,28 +1,51 @@
 <!doctype html>
 <html lang="en">
   <head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     {{> header}}
     <title>Life Kits</title>
   </head>
   <body>
+  
+  <div class="d-flex justify-content-center display-4">
     <h1>Login</h1>
-
-<div class="container">
-{{>menu}}
-
 </div>
+<div class="container ">
+	<div class="d-flex justify-content-center  ">
+		<div class="card w-75 bg-dark ">
+{{>menu}}
+</div>
+</div>
+</div>
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<div class="card w-75">
+			<div class="card-header">
 <form  action="/login" method="POST">
+  <div class="d-flex justify-content-center">
   <div class="form-group col-md-6">
-    <label for="username">User Name</label>
+    <label for="username"><h2>Username</h2></label>
     <input type="text" class="form-control" name="username" aria-describedby="emailHelp"
-    placeholder="Enter user name">
+    placeholder="Enter username">
   </div>
-  <div class="form-group col-md-6">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Password">
   </div>
-  <button type="login" class="btn btn-dark">Login</button>
+  <div class="d-flex justify-content-center">
+  <div class="form-group col-md-6 display-4">
+
+    <label for="exampleInputPassword1"><h2>Password</h2></label>
+    <input type="text" class="form-control input-lg" name="password" placeholder="Password" >
+  </div>
+  </div>
+  <div class="d-flex justify-content-center text-center">
+    <div class="form-group col-md-6">
+
+  <button type="login" class="btn   btn-dark">Login</button>
+  </div>
+  </div>
 </form>
+</div>
+</div>
 </div>
 
 {{#message}}

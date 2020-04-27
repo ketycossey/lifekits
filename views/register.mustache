@@ -5,12 +5,20 @@
     <title>Life Kits</title>
   </head>
   <body>
+  <div class="d-flex justify-content-center display-4">
     <h1>Register</h1>
-
-<div class="container">
+    </div>
+<div class="container ">
+	<div class="d-flex justify-content-center  ">
+		<div class="card w-75 bg-dark ">
 {{>menu}}
-
 </div>
+</div>
+</div>
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<div class="card w-75">
+			<div class="card-header">
 <form action ='/register' method="POST">
   <div class="form-group col-md-6">
     <label for="username">User Name</label>
@@ -22,6 +30,10 @@
     <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
   </div>
   <button type="register" class="btn btn-dark">Register</button>
+
+</div>
+</div>
+</div>
 </form>
 
 {{>footer}}
